@@ -1,0 +1,30 @@
+FROM	ubuntu:trusty
+
+MAINTAINER TrueSight Pulse Team <help@boundary.com>
+
+# Specify the meter version and repo we want to pull it from.
+ARG METER_PACKAGE_VER=4.2.3-639
+
+ENV METER_PACKAGE_FILENAME boundary-meter_${METER_PACKAGE_VER}~trusty_amd64.deb
+
+ARG METER_PACKAGE_REPO_URL=https://s3.amazonaws.com/apt.boundary.com/ubuntu/pool/universe/b/boundary-meter
+
+LABEL \
+	Description="TrueSight Pulse Meter" \
+	Vendor="BMC Software, Inc." \
+	Version="${METER_PACKAGE_VER}" \
+	PackageFilename="${METER_PACKAGE_FILENAME}" \
+	PackageRepo="${METER_PACKAGE_REPO_URL}"
+
+RUN apt-get update && apt-get install -y \
+	curl \
+	wget \
+	apt-transport-https \
+	nodejs \
+	npm
+RUN wget ${METER_PACKAGE_REPO_URL}/${METER_PACKAGE_FILENAME}
+RUN dpkg -i ${METER_PACKAGE_FILENAME}
+
+CMD boundary-meter -l create -b /etc/boundary -p ${TOKEN} ${METER_PROVISION_ARGS} && \
+	boundary-meter-provision -d /etc/boundary --rescan && \
+	boundary-meter -b /etc/boundary -I boundary-meter ${METER_RUNTIME_ARGS}
