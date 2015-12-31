@@ -3,7 +3,7 @@ FROM	ubuntu:trusty
 MAINTAINER TrueSight Pulse Team <help@boundary.com>
 
 # Specify the meter version and repo we want to pull it from.
-ARG METER_PACKAGE_VER=4.2.3-639
+ARG METER_PACKAGE_VER
 
 ENV METER_PACKAGE_FILENAME boundary-meter_${METER_PACKAGE_VER}~trusty_amd64.deb
 
