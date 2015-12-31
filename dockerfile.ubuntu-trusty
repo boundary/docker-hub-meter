@@ -16,6 +16,7 @@ LABEL \
 	PackageFilename="${METER_PACKAGE_FILENAME}" \
 	PackageRepo="${METER_PACKAGE_REPO_URL}"
 
+RUN [ -n "${METER_PACKAGE_VER}" ]
 RUN apt-get update && apt-get install -y \
 	curl \
 	wget \
