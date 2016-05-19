@@ -1,6 +1,6 @@
 FROM	ubuntu:trusty
 
-MAINTAINER TrueSight Pulse Team <help@boundary.com>
+MAINTAINER TrueSight Team <help@truesight.bmc.com>
 
 # Specify the meter version and repo we want to pull it from.
 ARG METER_PACKAGE_VER
