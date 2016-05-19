@@ -10,7 +10,7 @@ ENV METER_PACKAGE_FILENAME boundary-meter_${METER_PACKAGE_VER}~trusty_amd64.deb
 ARG METER_PACKAGE_REPO_URL=https://s3.amazonaws.com/apt.boundary.com/ubuntu/pool/universe/b/boundary-meter
 
 LABEL \
-	Description="TrueSight Pulse Meter" \
+	Description="TrueSight Meter" \
 	Vendor="BMC Software, Inc." \
 	Version="${METER_PACKAGE_VER}" \
 	PackageFilename="${METER_PACKAGE_FILENAME}" \
