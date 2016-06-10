@@ -5,9 +5,9 @@ MAINTAINER TrueSight Team <help@truesight.bmc.com>
 # Specify the meter version and repo we want to pull it from.
 ARG METER_PACKAGE_VER
 
-ENV METER_PACKAGE_FILENAME boundary-meter_${METER_PACKAGE_VER}~trusty_amd64.deb
+ENV METER_PACKAGE_FILENAME truesight-meter_${METER_PACKAGE_VER}~trusty_amd64.deb
 
-ARG METER_PACKAGE_REPO_URL=https://s3.amazonaws.com/apt.boundary.com/ubuntu/pool/universe/b/boundary-meter
+ARG METER_PACKAGE_REPO_URL=https://s3.amazonaws.com/apt.boundary.com/ubuntu/pool/universe/t/truesight-meter
 
 LABEL \
 	Description="TrueSight Meter" \
@@ -26,8 +26,8 @@ RUN apt-get update && apt-get install -y \
 RUN wget ${METER_PACKAGE_REPO_URL}/${METER_PACKAGE_FILENAME}
 RUN dpkg -i ${METER_PACKAGE_FILENAME}
 
-CMD boundary-meter -l create -b /etc/boundary -p ${TOKEN} ${METER_PROVISION_ARGS} && \
-	boundary-meter-provision -d /etc/boundary --rescan && \
-	boundary-meter -b /etc/boundary -I boundary-meter --update-config container.send_core_metrics=true && \
+CMD truesight-meter -l create -b /etc/truesight -p ${TOKEN} ${METER_PROVISION_ARGS} && \
+	truesight-meter-provision -d /etc/truesight --rescan && \
+	truesight-meter -b /etc/truesight -I truesight-meter --update-config container.send_core_metrics=true && \
 	rm -f /var/run/boundary-meter.pid && \
-	boundary-meter -b /etc/boundary -I boundary-meter ${METER_RUNTIME_ARGS}
+	truesight-meter -b /etc/truesight -I truesight-meter ${METER_RUNTIME_ARGS}
