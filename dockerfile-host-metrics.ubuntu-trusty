@@ -7,7 +7,7 @@ ARG METER_PACKAGE_VER
 
 ENV METER_PACKAGE_FILENAME truesight-meter_${METER_PACKAGE_VER}~trusty_amd64.deb
 
-ARG METER_PACKAGE_REPO_URL=https://s3.amazonaws.com/apt.truesight.bmc.com/ubuntu/pool/universe/t/truesight-meter
+ARG METER_PACKAGE_REPO_URL=https://apt.truesight.bmc.com/ubuntu/pool/universe/t/truesight-meter
 
 LABEL \
 	Description="TrueSight Meter" \
